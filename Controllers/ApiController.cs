@@ -24,5 +24,12 @@ namespace WordApi.Controllers
         {
             return _dataContext.WordColors.Find(id);
         }
+        // http post member to collection
+        [HttpPost]
+        public async Task<ActionResult<WordColor>> Post([FromBody] WordColor wordColor) {
+            _dataContext.Add(wordColor);
+            await _dataContext.SaveChangesAsync();
+            return wordColor;
+        }
     }
 }
